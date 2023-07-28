@@ -4,7 +4,8 @@
         <input type="text" class="form-control" placeholder="Enter username" name="username" #username>
         <label for="password" class="form-label">Password:</label>
         <input type="password" class="form-control" placeholder="Enter password" name="password" #password>
+        <label for="password" class="form-label">Confirm Password:</label>
+        <input type="password" class="form-control" placeholder="Confirm password" name="password" #password>
         </div>
-        <button class="btn btn-primary mb-3" (click)="login(username.value, password.value)">Login</button>
-        <button class="btn btn-primary mb-3" (click)="register()">Register</button>
+        <button class="btn btn-primary mb-3" (click)="register(username.value, password.value)">Register</button>
 </div>

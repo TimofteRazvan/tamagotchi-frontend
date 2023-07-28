@@ -7,12 +7,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { CreateTamagotchiComponent } from './create-tamagotchi/create-tamagotchi.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthenticateComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent,
+    CreateTamagotchiComponent
   ],
   imports: [
     BrowserModule,

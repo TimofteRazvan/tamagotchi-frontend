@@ -1,17 +1,21 @@
 <div class="container-main container-login">
     <h1>{{tamagotchi}}</h1>
     <img src="https://www.pngkit.com/png/detail/65-654006_pichu-deviantart-pichu-pokemon.png" width="300" height="400">
+    <h2>Feeling {{feeling}}</h2>
+    <h3>Stage: {{stage}}</h3>
     <table class='table' id="filterTable">
         <thead>
         <tr>
           <th>HUNGER</th>
           <th>HAPPINESS</th>
+          <th>CLEANLINESS</th>
         </tr>
         </thead>
         <tbody>
           <tr>
             <td>{{status.hunger}}</td>
             <td>{{status.happiness}}</td>
+            <td>{{status.cleanliness}}</td>
           </tr>
         </tbody>
       </table>
@@ -22,6 +26,9 @@
         <div class="wrap-button">
             <button class="button btn btn-primary" (click)="play()">Play</button>
         </div>
+        <div class="wrap-button">
+          <button class="button btn btn-primary" (click)="clean()">Clean</button>
+      </div>
         <button class="button btn btn-primary" (click)="create()">New Tamagotchi</button>
         <div class="wrap-button">
           <a routerLink="" routerLinkActive="active">

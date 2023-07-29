@@ -27,9 +27,9 @@ export class UserService {
         return this.http.get<Status>(`${this.url}/home/${id}`)
     }
 
-    updateStatus(id: number, hunger: number, happiness: number) : Observable<Status> {
+    updateStatus(id: number, hunger: number, happiness: number, cleanliness: number, age: number) : Observable<Status> {
         //console.log("entered update Status")
-        return this.http.post<Status>(`${this.url}/update-status/${id}`, new Status(hunger, happiness));
+        return this.http.post<Status>(`${this.url}/update-status/${id}`, new Status(hunger, happiness, cleanliness, age));
     }
 
     createTamagotchi(id: number, name: string) : Observable<User> {

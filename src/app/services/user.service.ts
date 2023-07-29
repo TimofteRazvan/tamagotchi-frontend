@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from 'rxjs';
 import { User } from '../models/user.model';
 import { Status } from '../models/status.model';
+import { Tamagotchi } from '../models/tamagotchi.model';
 
 @Injectable({
     providedIn: 'root'
@@ -32,8 +33,8 @@ export class UserService {
         return this.http.post<Status>(`${this.url}/update-status/${id}`, new Status(hunger, happiness, cleanliness, age));
     }
 
-    createTamagotchi(id: number, name: string) : Observable<User> {
-        return this.http.post<User>(`${this.url}/create-tamagotchi/${id}`, name);
+    createTamagotchi(id: number, name: string, species: string) : Observable<User> {
+        return this.http.post<User>(`${this.url}/create-tamagotchi/${id}`, new Tamagotchi(name, species));
     }
 
     killTamagotchi(id: number) : Observable<string> {

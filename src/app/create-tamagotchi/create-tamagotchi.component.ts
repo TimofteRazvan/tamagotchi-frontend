@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { Tamagotchi } from '../models/tamagotchi.model';
 
 @Component({
   selector: 'app-create-tamagotchi',
@@ -9,6 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class CreateTamagotchiComponent implements OnInit {
   userId: number = 0;
+  species: string = "";
 
   constructor(private service: UserService, private router: Router) {
 
@@ -29,12 +31,14 @@ export class CreateTamagotchiComponent implements OnInit {
         alert("Field cannot be empty!");
       }
       else {
-        this.service.createTamagotchi(this.userId, nameInput).subscribe(data => {
+        this.service.createTamagotchi(this.userId, nameInput, this.species).subscribe(data => {
           if (data == null) {
               alert("Creation failed!");
           } 
           else {
-              sessionStorage.setItem("tamagotchi", data.tamagotchi);
+              console.log(this.species);
+              sessionStorage.setItem("tamagotchiName", data.tamagotchiName);
+              sessionStorage.setItem("tamagotchiSpecies", data.tamagotchiSpecies);
               this.router.navigate(['/home']);
           }
         })

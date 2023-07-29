@@ -12,32 +12,50 @@ import { interval, Subscription } from 'rxjs';
 export class HomeComponent implements OnInit {
   username: string = "";
   userId: number = 0;
-  tamagotchi: string = "";
+  tamagotchiName: string = "";
+  tamagotchiSpecies: string = "";
   status: Status = new Status(0, 0, 0, 0);
   subscription: Subscription = new Subscription;
   feeling: string = "fine";
   stage: string = "";
+  avatar: string = "";
 
   constructor(private userSerivce: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
-    const source = interval(200);
+    const source = interval(5000);
     this.subscription = source.subscribe(val => this.passTime());
     var username = sessionStorage.getItem("username");
     var userId = sessionStorage.getItem("userId");
-    var tamagotchi = sessionStorage.getItem("tamagotchi");
+    var tamagotchiName = sessionStorage.getItem("tamagotchiName");
+    var tamagotchiSpecies = sessionStorage.getItem("tamagotchiSpecies");
     if (username == null || userId == null) {
       this.router.navigate(['']);
     }
-    else if (tamagotchi == "" || tamagotchi == null) {
+    else if (tamagotchiName == "" || tamagotchiName == null || tamagotchiSpecies == "" || tamagotchiSpecies == null) {
       this.router.navigate(['create-tamagotchi'])
     }
     else {
       this.username = username;
       this.userId = Number.parseInt(userId);
-      this.tamagotchi = tamagotchi;
+      this.tamagotchiName = tamagotchiName;
+      this.tamagotchiSpecies = tamagotchiSpecies;
       this.userSerivce.getStatus(Number.parseInt(userId)).subscribe(result => this.status = result);
+      if (this.status.age >= 100) {
+        if (this.status.age < 200) {
+          this.stage = "Teenager";
+          this.avatar = "/assets/images/" + this.tamagotchiSpecies + "2.png";
+        }
+        else if (this.status.age >= 200) {
+          this.stage = "Adult";
+          this.avatar = "/assets/images/" + this.tamagotchiSpecies + "3.png";
+        }
+      }
+      else {
+        this.stage = "Child";
+        this.avatar = "/assets/images/" + this.tamagotchiSpecies + "1.png";
+      }
     }
   }
 
@@ -83,18 +101,18 @@ export class HomeComponent implements OnInit {
       this.feeling = "fine";
     }
     if (this.status.age >= 100) {
-      if (this.status.age <= 200) {
+      if (this.status.age < 200) {
         this.stage = "Teenager";
+        this.avatar = "/assets/images/" + this.tamagotchiSpecies + "2.png";
       }
-      else if (this.status.age <= 300) {
+      else if (this.status.age >= 200) {
         this.stage = "Adult";
-      }
-      else if (this.status.age <= 400) {
-        this.stage = "Elder";
+        this.avatar = "/assets/images/" + this.tamagotchiSpecies + "3.png";
       }
     }
     else {
-      this.stage = "Baby";
+      this.stage = "Child";
+      this.avatar = "/assets/images/" + this.tamagotchiSpecies + "1.png"
     }
   }
 

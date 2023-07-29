@@ -28,7 +28,8 @@ export class AuthenticateComponent implements OnInit {
             else {
                 sessionStorage.setItem("username", data.username);
                 sessionStorage.setItem("userId", data.id.toString());
-                sessionStorage.setItem("tamagotchi", data.tamagotchi);
+                sessionStorage.setItem("tamagotchiName", data.tamagotchiName);
+                sessionStorage.setItem("tamagotchiSpecies", data.tamagotchiSpecies);
                 this.router.navigate(['/home']);
             }
           })

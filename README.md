@@ -1,9 +1,20 @@
 # TamagotchiFrontend
 
-<h2>Login (localhost:4200/)</h2>
+<h3>Login (localhost:4200/)</h3>
 
-![](https://github.com/TimofteRazvan/online-library/blob/main/home.PNG)
+![](https://github.com/TimofteRazvan/tamagotchi-frontend/blob/master/loginC.PNG)
 
+<h3>Register (localhost:4200/register)</h3>
+
+![](https://github.com/TimofteRazvan/tamagotchi-frontend/blob/master/registerC.PNG)
+
+<h3>Creation (localhost:4200/create-tamagotchi)</h3>
+
+![](https://github.com/TimofteRazvan/tamagotchi-frontend/blob/master/createC.PNG)
+
+<h3>Home (localhost:4200/home)</h3>
+
+![](https://github.com/TimofteRazvan/tamagotchi-frontend/blob/master/homeC.PNG)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
 

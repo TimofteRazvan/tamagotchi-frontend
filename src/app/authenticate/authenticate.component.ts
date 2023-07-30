@@ -35,8 +35,4 @@ export class AuthenticateComponent implements OnInit {
           })
         }
     }
-
-    register() : void {
-      this.router.navigate(['/register']);
-    }
 }

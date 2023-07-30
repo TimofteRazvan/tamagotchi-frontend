@@ -1,3 +1,34 @@
+:host {
+  display:block;
+  background: url("/assets/images/city.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+  padding-top: 200px;
+  margin-bottom: 100px;
+}
+
+.btn-success {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+}
+
+.form-control {
+  margin-bottom: 20px;
+}
+
 [type=radio] { 
     position: absolute;
     opacity: 0;

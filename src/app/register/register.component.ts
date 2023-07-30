@@ -16,9 +16,12 @@ export class RegisterComponent implements OnInit {
     
   }
 
-  register(usernameInput: string, passwordInput: string) : void {
+  register(usernameInput: string, passwordInput: string, passwordConfirm: string) : void {
       if (usernameInput.trim().length <= 0 || passwordInput.trim().length <= 0) {
         alert("Fields cannot be empty!");
+      }
+      else if (passwordInput != passwordConfirm) {
+        alert("Passwords must match!");
       }
       else {
         this.service.register(usernameInput, passwordInput).subscribe(data => {

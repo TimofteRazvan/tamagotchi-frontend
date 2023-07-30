@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
   constructor(private userSerivce: UserService, private router: Router) {
   }
 
-  ngOnInit(): void {
-    const source = interval(5000);
+  async ngOnInit(): Promise<void> {
+    const source = interval(1000);
     this.subscription = source.subscribe(val => this.passTime());
     var username = sessionStorage.getItem("username");
     var userId = sessionStorage.getItem("userId");
@@ -34,14 +34,17 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['']);
     }
     else if (tamagotchiName == "" || tamagotchiName == null || tamagotchiSpecies == "" || tamagotchiSpecies == null) {
+      this.userId = Number.parseInt(userId);
+      this.username = username;
       this.router.navigate(['create-tamagotchi'])
     }
     else {
-      this.username = username;
       this.userId = Number.parseInt(userId);
+      this.username = username;
+      this.userSerivce.getStatus(Number.parseInt(userId)).subscribe(result => this.status = result);
       this.tamagotchiName = tamagotchiName;
       this.tamagotchiSpecies = tamagotchiSpecies;
-      this.userSerivce.getStatus(Number.parseInt(userId)).subscribe(result => this.status = result);
+      await this.delay(100);
       if (this.status.age >= 100) {
         if (this.status.age < 200) {
           this.stage = "Teenager";
@@ -58,6 +61,10 @@ export class HomeComponent implements OnInit {
       }
     }
   }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
 
   passTime() : void {
     this.status.happiness = this.status.happiness - 1;
@@ -100,35 +107,57 @@ export class HomeComponent implements OnInit {
     else {
       this.feeling = "fine";
     }
-    if (this.status.age >= 100) {
-      if (this.status.age < 200) {
-        this.stage = "Teenager";
-        this.avatar = "/assets/images/" + this.tamagotchiSpecies + "2.png";
-      }
-      else if (this.status.age >= 200) {
-        this.stage = "Adult";
-        this.avatar = "/assets/images/" + this.tamagotchiSpecies + "3.png";
-      }
+
+    if (this.status.age == 100) {
+      this.stage = "Teenager";
+      this.avatar = "/assets/images/" + this.tamagotchiSpecies + "2.png";
     }
-    else {
-      this.stage = "Child";
-      this.avatar = "/assets/images/" + this.tamagotchiSpecies + "1.png"
+    else if (this.status.age == 200) {
+      this.stage = "Adult";
+      this.avatar = "/assets/images/" + this.tamagotchiSpecies + "3.png";
     }
   }
 
   feed(): void {
     this.status.hunger = 100;
     this.userSerivce.updateStatus(this.userId, this.status.hunger, this.status.happiness, this.status.cleanliness, this.status.age).subscribe(result => this.status = result);
+    if (this.status.cleanliness <= 50) {
+      this.feeling = "dirty";
+    }
+    else if (this.status.happiness <= 50) {
+      this.feeling = "sad";
+    }
+    else {
+      this.feeling = "fine";
+    }
   }
 
   play(): void {
     this.status.happiness = 100;
     this.userSerivce.updateStatus(this.userId, this.status.hunger, this.status.happiness, this.status.cleanliness, this.status.age).subscribe(result => this.status = result);
+    if (this.status.cleanliness <= 50) {
+      this.feeling = "dirty";
+    }
+    else if (this.status.hunger <= 50) {
+      this.feeling = "hungry";
+    }
+    else {
+      this.feeling = "fine";
+    }
   }
 
   clean() : void {
     this.status.cleanliness = 100;
     this.userSerivce.updateStatus(this.userId, this.status.hunger, this.status.happiness, this.status.cleanliness, this.status.age).subscribe(result => this.status = result);
+    if (this.status.hunger <= 50) {
+      this.feeling = "hungry";
+    }
+    else if (this.status.happiness <= 50) {
+      this.feeling = "sad";
+    }
+    else {
+      this.feeling = "fine";
+    }
   }
 
   create(): void {

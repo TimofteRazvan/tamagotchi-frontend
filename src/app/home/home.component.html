@@ -1,14 +1,15 @@
-<div class="container-main container-login">
-    <h1>{{tamagotchiName}}</h1>
-    <img src={{avatar}} width="400" height="400">
-    <h2>Feeling {{feeling}}</h2>
-    <h3>Stage: {{stage}}</h3>
-    <table class='table' id="filterTable">
+<div class="container-main">
+    <h1 class="center title">{{tamagotchiName}}</h1>
+    <img src={{avatar}} width="400" height="400" class="center avatar">
+    <h2 class="center">Feeling {{feeling}}</h2>
+    <h3 class="center">Stage: {{stage}}</h3>
+    <table class='table center' id="filterTable">
         <thead>
         <tr>
           <th>HUNGER</th>
           <th>HAPPINESS</th>
           <th>CLEANLINESS</th>
+          <th>AGE</th>
         </tr>
         </thead>
         <tbody>
@@ -16,23 +17,26 @@
             <td>{{status.hunger}}</td>
             <td>{{status.happiness}}</td>
             <td>{{status.cleanliness}}</td>
+            <td>{{status.age}}</td>
           </tr>
         </tbody>
       </table>
-    <div class="wrap-main wrap-login">
-        <div class="wrap-button">
-            <button class="button btn btn-primary" (click)="feed()">Feed</button>
+    <div class="buttons">
+        <div class="status-div">
+            <button class="btn btn-primary" (click)="feed()">Feed</button>
         </div>
-        <div class="wrap-button">
-            <button class="button btn btn-primary" (click)="play()">Play</button>
+        <div class="status-div">
+            <button class="btn btn-primary" (click)="play()">Play</button>
         </div>
-        <div class="wrap-button">
-          <button class="button btn btn-primary" (click)="clean()">Clean</button>
-      </div>
-        <button class="button btn btn-primary" (click)="create()">New Tamagotchi</button>
-        <div class="wrap-button">
+        <div class="status-div">
+          <button class="btn btn-primary" (click)="clean()">Clean</button>
+        </div>
+        <div class="create-div">
+          <button class="btn btn-success" (click)="create()">New Tamagotchi</button>
+        </div>
+        <div class="exit-div">
           <a routerLink="" routerLinkActive="active">
-            <button class="button btn btn-primary" (click)="removeUser()">Log out</button>
+            <button class="btn btn-danger" (click)="removeUser()">Log out</button>
           </a>
         </div>
     </div>

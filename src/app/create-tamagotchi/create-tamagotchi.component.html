@@ -1,30 +1,20 @@
 <div id="login-form">
-    <div class="mb-3 mt-3">
+    <div class="center mb-3 mt-3">
         <label for="name" class="form-label">Name:</label>
         <input type="text" class="form-control" placeholder="Enter name" name="name" #name>
         <h2>Tamagotchi species:</h2>
         <label>
-            <!-- <label for="wyrm" class="form-label">Wyrm</label> -->
             <input type="radio" name="species" [(ngModel)]="species" value="wyrm" checked>
             <img src="/assets/images/wyrm1.png" width="200" height="200" alt="Option 1">
-            <!-- <input type="radio" class="form-control" name="species" #wyrm> -->
         </label>
         <label>
-            <!-- <label for="wyrm" class="form-label">Wyrm</label> -->
             <input type="radio" name="species" [(ngModel)]="species" value="sphynx">
             <img src="/assets/images/sphynx1.png" width="200" height="200" alt="Option 2">
-            <!-- <input type="radio" class="form-control" name="species" #wyrm> -->
         </label>
         <label>
-            <!-- <label for="wyrm" class="form-label">Wyrm</label> -->
             <input type="radio" name="species" [(ngModel)]="species" value="wraith">
             <img src="/assets/images/wraith1.png" width="200" height="200" alt="Option 3">
-            <!-- <input type="radio" class="form-control" name="species" #wyrm> -->
         </label>
-        <!-- <label for="wraith" class="form-label">Wraith</label>
-        <input type="radio" class="form-control" name="species" #wraith>
-        <label for="sphynx" class="form-label">Drake</label>
-        <input type="radio" class="form-control" name="species" #sphynx> -->
         </div>
-        <button class="btn btn-primary mb-3" (click)="create(name.value)">Create</button>
+        <button class="btn btn-success mb-3" (click)="create(name.value)">Create</button>
 </div>
